@@ -5,7 +5,6 @@ LDFLAGS = -lssl -lcrypto -lm -lreadline -lcurl
 TARGET = keylyzer
 
 SRCS = src/main.c \
-       src/define.c \
 	   src/keytester.c \
 	   src/network.c 
        
