@@ -66,7 +66,6 @@ Compile the project:
 make
 ```
 
-*If your repository uses a different URL or build process, update these commands accordingly.*
 
 ## Usage
 
