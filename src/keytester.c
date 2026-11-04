@@ -80,7 +80,6 @@ int api_tester(int command, char *key, int argc)
 
     if (command == 4)
     {
-
         printf("\n[*] Analyzing Resend API Key...\n\n");
         sleep(1);
 
@@ -207,7 +206,6 @@ int api_tester(int command, char *key, int argc)
         fflush(stdout);
     }
 
-    //////////////////////
     if (command == 10)
     {
         char sid[4096];
@@ -1369,8 +1367,7 @@ int api_tester(int command, char *key, int argc)
 
     if (command == 55)
     {
-// graphql
-        
+
         printf("\n[*] Analyzing Monday.com API Key...\n\n");
         sleep(1);
 
@@ -2211,6 +2208,7 @@ int api_tester(int command, char *key, int argc)
 
         fflush(stdout);
 
+    
         make_request(url, headers, 1, argc, body);
 
         fflush(stdout);
@@ -3029,7 +3027,7 @@ int api_tester(int command, char *key, int argc)
 
         fflush(stdout);
 
-        make_request(url, headers, 0, argc, body);
+        make_request(url, headers, 1, argc, body);
 
         fflush(stdout);
     }
@@ -3056,7 +3054,7 @@ int api_tester(int command, char *key, int argc)
 
         fflush(stdout);
 
-        make_request(url, headers, 0, argc, body);
+        make_request(url, headers, 1, argc, body);
 
         fflush(stdout);
     }
@@ -3083,7 +3081,7 @@ int api_tester(int command, char *key, int argc)
 
         fflush(stdout);
 
-        make_request(url, headers, 0, argc, body);
+        make_request(url, headers, 1, argc, body);
 
         fflush(stdout);
     }
@@ -3110,7 +3108,7 @@ int api_tester(int command, char *key, int argc)
 
         fflush(stdout);
 
-        make_request(url, headers, 0, argc, body);
+        make_request(url, headers, 1, argc, body);
 
         fflush(stdout);
     }
@@ -3137,7 +3135,7 @@ int api_tester(int command, char *key, int argc)
 
         fflush(stdout);
 
-        make_request(url, headers, 0, argc, body);
+        make_request(url, headers, 1, argc, body);
 
         fflush(stdout);
     }
@@ -3164,7 +3162,7 @@ int api_tester(int command, char *key, int argc)
 
         fflush(stdout);
 
-        make_request(url, headers, 0, argc, body);
+        make_request(url, headers, 1, argc, body);
 
         fflush(stdout);
     }
@@ -3192,11 +3190,312 @@ int api_tester(int command, char *key, int argc)
 
         fflush(stdout);
 
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 111)
+    {
+
+        char host[4096];
+
+        printf("Enter Strapi Host(format: yourconnecthost.com): ");
+
+        if (scanf("%4095s", host) != 1)
+        {
+            fprintf(stderr, "Failed to read Strapi Host\n");
+            return 1;
+        }
+
+        printf("\n[*] Analyzing Strapi API Token...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://%s/api/users/me", host);
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 112)
+    {
+
+        printf("\n[*] Analyzing Sanity.io API Token...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.sanity.io/v2021-06-07/users/me");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 113)
+    {
+
+        printf("\n[*] Analyzing Webflow API Token...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.webflow.com/v2/token/authorized_by");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 114)
+    {
+
+        printf("\n[*] Analyzing Squarespace Commerce API Key...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_header_1[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.squarespace.com/1.0/commerce/orders?modifiedAfter=2024-01-01T00:00:00.000Z&modifiedBefore=2024-01-02T00:00:00.000Z");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
+        snprintf(auth_header_1, sizeof(auth_header_1), "User-Agent: keylyzer/1.0");
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header_1, auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 2, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 115)
+    {
+
+        printf("\n[*] Analyzing Checkly API Key...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.checklyhq.com/v1/checks");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 116)
+    {
+
+        char host[4096];
+
+        printf("Enter your Shopify Host(format: yourshopifystore.myshopify.com): ");
+
+        if (scanf("%4095s", host) != 1)
+        {
+            fprintf(stderr, "Failed to read your Shopify Host\n");
+            return 1;
+        }
+
+        printf("\n[*] Analyzing Shopify Admin API Access Token...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://%s/admin/api/2024-10/shop.json", host);
+        snprintf(auth_header, sizeof(auth_header), "X-Shopify-Access-Token: %s", key);
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 117)
+    {
+
+        char hash[4096];
+
+        printf("Enter Hash: ");
+
+        if (scanf("%4095s", hash) != 1)
+        {
+            fprintf(stderr, "Failed to read Hash\n");
+            return 1;
+        }
+
+        printf("\n[*] Analyzing BigCommerce API Token...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_header_1[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.bigcommerce.com/stores/%s/v2/store", hash);
+        snprintf(auth_header, sizeof(auth_header), "X-Auth-Token: %s", key);
+        snprintf(auth_header_1, sizeof(auth_header_1), "Accept: application/json");
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header_1, auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 2, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 118)
+    {
+        printf("\n[*] Analyzing Klaviyo API Key...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_header_1[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://a.klaviyo.com/api/accounts/");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Klaviyo-API-Key %s", key);
+        snprintf(auth_header_1, sizeof(auth_header_1), "revision: 2024-10-15");
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header_1, auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 2, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 119)
+    {
+        printf("\n[*] Analyzing ConvertKit API Secret...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.convertkit.com/v3/account?api_secret=%s", key);
+        
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
         make_request(url, headers, 0, argc, body);
 
         fflush(stdout);
     }
 
-        
+    if (command == 120)
+    {
+        printf("\n[*] Analyzing Typeform Personal Access Token...\n\n");
+        sleep(1);
 
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.typeform.com/me");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
+        
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+        
 }
+
+
