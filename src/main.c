@@ -57,7 +57,7 @@ void services_printer()
       "[13] Cloudflare API Token              [43] Anthropic API Key                   [73] Braintree API Key                    [103] Packagist/Composer Token\n"
       "[14] DigitalOcean PAT                  [44] Groq API Key                        [74] Plaid Client ID + Secret             [104] 1Password Connect API Token\n"
       "[15] Heroku API Key                    [45] Cohere API Key                      [75] Alpaca Trading API Key + Secret      [105] Doppler API Token\n"
-      "[16] NPM Access Token                  [46] Replicate API Token                 [76] Coinbase API Key                     [106] Infisical API Token\n"
+      "[16] NPM Access Token                  [46] Replicate API Token                 [76] Linode API Token                     [106] Infisical API Token\n"
       "[17] PyPI API Token                    [47] ElevenLabs API Key                  [77] Splunk HEC Token                     [107] LaunchDarkly API Token\n"
       "[18] Telegram Bot Token                [48] Figma Personal Access Token         [78] Honeybadger API Key                  [108] Statuspage API Key\n"
       "[19] Google Cloud Service Account Key  [49] Linear API Key                      [79] Rollbar Access Token                 [109] Zapier NLA API Key\n"
