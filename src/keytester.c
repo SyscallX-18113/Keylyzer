@@ -1,6 +1,5 @@
-```
-Please download last release version currently the code is broken and in Development and Commit of next version
-```
+// Please download last release version currently the code is broken and in Development and Commit of next version
+
 #include "keytester.h"
 
 int api_tester(int command, char *key, int argc)
@@ -2031,6 +2030,510 @@ int api_tester(int command, char *key, int argc)
         fflush(stdout);
 
         make_request(url, headers, 2, argc, body);
+
+        fflush(stdout);
+    }
+
+
+    if (command == 76)
+    {
+
+        printf("\n[*] Analyzing Linode (Akamai Cloud Manager) API Token...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.linode.com/v4/profile");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 77)
+    {
+
+        char host[4096];
+
+        printf("Enter URL Host format( yourhost.com ): ");
+
+        if (scanf("%4095s", host) != 1)
+        {
+            fprintf(stderr, "Failed to read URL Host\n");
+            return 1;
+        }
+
+        printf("\n[*] Analyzing Splunk HEC Token...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://%s:8088/services/collector/health", host);
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Splunk %s", key);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 78)
+    {
+
+
+        printf("\n[*] Analyzing Splunk HEC Token...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://app.honeybadger.io/v2/projects");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Basic base64(%s:)", key);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 79)
+    {
+
+
+        printf("\n[*] Analyzing Rollbar Access Token...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.rollbar.com/api/1/project");
+        snprintf(auth_header, sizeof(auth_header), "X-Rollbar-Access-Token: %s", key);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 80)
+    {
+
+
+        printf("\n[*] Analyzing Bugsnag API Key...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.bugsnag.com/user");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: token %s", key);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 81)
+    {
+
+
+        printf("\n[*] Analyzing Segment Write Key...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.segment.io/v1/batch");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Basic base64(%s:)", key);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 82)
+    {
+
+
+        printf("\n[*] Analyzing Mixpanel API Secret...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://mixpanel.com/api/app/me");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Basic base64(%s:)", key);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 83)
+    {
+
+        char api[4096];
+
+        printf("Enter Api Key: ");
+
+        if (scanf("%4095s", api) != 1)
+        {
+            fprintf(stderr, "Failed to read API Key\n");
+            return 1;
+        }
+
+        printf("\n[*] Analyzing Amplitude API Key + Secret...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://amplitude.com/api/2/usage/accounts");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Basic base64(%s:%s)", api, key);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 84)
+    {
+
+        char api[4096];
+
+        printf("Enter Api Key: ");
+
+        if (scanf("%4095s", api) != 1)
+        {
+            fprintf(stderr, "Failed to read API Key\n");
+            return 1;
+        }
+
+        printf("\n[*] Analyzing GoDaddy API Key + Secret...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.godaddy.com/v1/domains");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: sso-key %s:%s", api, key);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 85)
+    {
+
+        char api_user[4096];
+
+        printf("Enter Api User: ");
+
+        if (scanf("%4095s", api_user) != 1)
+        {
+            fprintf(stderr, "Failed to read API User\n");
+            return 1;
+        }
+
+        char username[4096];
+
+        printf("Enter Username: ");
+
+        if (scanf("%4095s", username) != 1)
+        {
+            fprintf(stderr, "Failed to read Usernamme\n");
+            return 1;
+        }
+
+        char ip[4096];
+
+        printf("Enter Client Ip: ");
+
+        if (scanf("%4095s", ip) != 1)
+        {
+            fprintf(stderr, "Failed to read Client Ip\n");
+            return 1;
+        }
+
+        printf("\n[*] Analyzing Namecheap API Key...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.namecheap.com/xml.response?ApiUser=%s&ApiKey=%s&UserName=%s&Command=namecheap.users.getBalances&ClientIp=%s", api_user, key, username, ip);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 0, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 86)
+    {
+
+        printf("\n[*] Analyzing Fastly API Token...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.fastly.com/current_user");
+        snprintf(auth_header, sizeof(auth_header), "Fastly-Key: %s", key);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 87)
+    {
+
+        char api_key[4096];
+
+        printf("Enter Api Key: ");
+
+        if (scanf("%4095s", api_key) != 1)
+        {
+            fprintf(stderr, "Failed to read API Key\n");
+            return 1;
+        }
+
+        char cloud_name[4096];
+
+        printf("Enter Cloud Name: ");
+
+        if (scanf("%4095s", cloud_name) != 1)
+        {
+            fprintf(stderr, "Failed to read Cloud Name\n");
+            return 1;
+        }
+
+        printf("\n[*] Analyzing Cloudinary API Key + Secret...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.cloudinary.com/v1_1/%s/resources/image", cloud_name);
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Basic base64(%s:%s)", api_key, key);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 88)
+    {
+
+        printf("\n[*] Analyzing Unsplash Access Key...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.unsplash.com/me");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Client-ID %s", key);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 89)
+    {
+
+        printf("\n[*] Analyzing Mistral AI API Key...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.mistral.ai/v1/models");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 90)
+    {
+
+        printf("\n[*] Analyzing Together AI API Key...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.together.xyz/v1/models");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
 
         fflush(stdout);
     }
