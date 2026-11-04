@@ -1,6 +1,4 @@
-```
-Please download last release version currently the code is broken and in Development and Commit of next version
-```
+// Please download last release version currently the code is broken and in Development and Commit of next version
 #include <stdio.h>
 #include <stdio.h>
 #include <stdlib.h>
