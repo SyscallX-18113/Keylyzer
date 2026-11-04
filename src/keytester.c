@@ -3061,12 +3061,142 @@ int api_tester(int command, char *key, int argc)
         fflush(stdout);
     }
 
+    if (command == 106)
+    {
+
+        printf("\n[*] Analyzing Infisical API Token...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://app.infisical.com/api/v2/users/me");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 0, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 107)
+    {
+
+        printf("\n[*] Analyzing LaunchDarkly API Token...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://app.launchdarkly.com/api/v2/caller-identity");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: %s", key);
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 0, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 108)
+    {
+
+        printf("\n[*] Analyzing Statuspage API Key...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.statuspage.io/v1/users/me");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: OAuth %s", key);
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 0, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 109)
+    {
+
+        printf("\n[*] Analyzing Zapier NLA API Key...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://nla.zapier.com/api/v1/check");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 0, argc, body);
+
+        fflush(stdout);
+    }
+
     
+    if (command == 110)
+    {
 
+        printf("\n[*] Analyzing Contentful Management API Token...\n\n");
+        sleep(1);
 
-        
+        fflush(stdout);
 
-}
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.contentful.com/spaces");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 0, argc, body);
+
+        fflush(stdout);
+    }
+
         
 
 }
