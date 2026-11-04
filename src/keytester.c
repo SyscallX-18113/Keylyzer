@@ -2538,7 +2538,535 @@ int api_tester(int command, char *key, int argc)
         fflush(stdout);
     }
 
+    if (command == 91)
+    {
 
+        printf("\n[*] Analyzing Terraform Cloud API Token...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://app.terraform.io/api/v2/account/details");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 92)
+    {
+
+        char host[4096];
+
+        printf("Enter Url Host (format: yourhost.com): ");
+
+        if (scanf("%4095s", host) != 1)
+        {
+            fprintf(stderr, "Failed to read Url Host\n");
+            return 1;
+        }
+
+        printf("\n[*] Analyzing Ansible Tower/AWX API Token...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://%s/api/v2/me/", host);
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 93)
+    {
+
+        char host[4096];
+
+        printf("Enter Url Host (format: yourhost.com): ");
+
+        if (scanf("%4095s", host) != 1)
+        {
+            fprintf(stderr, "Failed to read Url Host\n");
+            return 1;
+        }
+
+        printf("\n[*] Analyzing Kubernetes Service Account Token...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://%s:6443/api/v1/namespaces/default", host);
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 94)
+    {
+
+        char host[4096];
+
+        printf("Enter Url Host (format: yourhost.com): ");
+
+        if (scanf("%4095s", host) != 1)
+        {
+            fprintf(stderr, "Failed to read Url Host\n");
+            return 1;
+        }
+
+        printf("\n[*] Analyzing Grafana API Key...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://%s/api/org", host);
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 95)
+    {
+
+        char host[4096];
+
+        printf("Enter Url Host (format: yourhost.com): ");
+
+        if (scanf("%4095s", host) != 1)
+        {
+            fprintf(stderr, "Failed to read Url Host\n");
+            return 1;
+        }
+
+        char user[4096];
+
+        printf("Enter User Id: ");
+
+        if (scanf("%4095s", user) != 1)
+        {
+            fprintf(stderr, "Failed to read User Id\n");
+            return 1;
+        }
+
+        printf("\n[*] Analyzing Prometheus Basic Auth...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://%s/api/v1/status/config", host);
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Basic base64(%s:%s)", user, key);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 96)
+    {
+
+        char host[4096];
+
+        printf("Enter Url Host (format: yourhost.com): ");
+
+        if (scanf("%4095s", host) != 1)
+        {
+            fprintf(stderr, "Failed to read Url Host\n");
+            return 1;
+        }
+
+        char id[4096];
+
+        printf("Enter ID: ");
+
+        if (scanf("%4095s", id) != 1)
+        {
+            fprintf(stderr, "Failed to read ID\n");
+            return 1;
+        }
+
+        printf("\n[*] Analyzing Elasticsearch API Key...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://%s:9200/_security/_authenticate", host);
+        snprintf(auth_header, sizeof(auth_header), "Authorization: ApiKey {base64 %s:%s}", id, key);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 97)
+    {
+
+
+        printf("\n[*] Analyzing Vultr API Key...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.vultr.com/v2/account");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+
+    if (command == 98)
+    {
+
+        char account_key[4096];
+
+        printf("Enter Account Key: ");
+
+        if (scanf("%4095s", account_key) != 1)
+        {
+            fprintf(stderr, "Failed to Account Key\n");
+            return 1;
+        }
+
+
+        printf("\n[*] Analyzing Redis Cloud API Key...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_header_1[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.redislabs.com/v1/subscriptions");
+        snprintf(auth_header, sizeof(auth_header), "x-api-key: %s", account_key);
+        snprintf(auth_header_1, sizeof(auth_header_1), "x-api-secret-key: %s", key);
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header_1, auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 2, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 99)
+    {
+
+        printf("\n[*] Analyzing TravisCI API Token...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_header_1[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.travis-ci.com/user");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: token %s", key);
+        snprintf(auth_header_1, sizeof(auth_header_1), "Travis-API-Version: 3");
+        
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header_1, auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 2, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 100)
+    {
+
+        printf("\n[*] Analyzing Calendly API Token...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.calendly.com/users/me");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
+        
+        
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 101)
+    {
+
+        printf("\n[*] Analyzing Calendly API Token...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://crates.io/api/v1/me");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: %s", key);
+        
+        
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 102)
+    {
+
+        printf("\n[*] Analyzing RubyGems API Key...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://rubygems.org/api/v1/api_key.json");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: %s", key);
+        
+        
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 1, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 103)
+    {
+
+        char api_key[4096];
+
+        printf("Enter API Key: ");
+
+        if (scanf("%4095s", api_key) != 1)
+        {
+            fprintf(stderr, "Failed to read API Key\n");
+            return 1;
+        }
+
+        printf("\n[*] Analyzing Vonage API Key + Secret...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://rest.nexmo.com/account/get-balance?api_key=%s&api_secret=%s", api_key, key);
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 0, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 104)
+    {
+
+        char host[4096];
+
+        printf("Enter Connect Host(format: yourconnecthost.com): ");
+
+        if (scanf("%4095s", host) != 1)
+        {
+            fprintf(stderr, "Failed to read Connect Host\n");
+            return 1;
+        }
+
+        printf("\n[*] Analyzing 1Password Connect API Token...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://%s/v1/vaults", host);
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 0, argc, body);
+
+        fflush(stdout);
+    }
+
+    if (command == 105)
+    {
+
+        printf("\n[*] Analyzing Doppler API Token...\n\n");
+        sleep(1);
+
+        fflush(stdout);
+
+        char auth_header[8096];
+        char auth_url[4096];
+
+        const char *body; 
+        snprintf(auth_url, sizeof(auth_url), "https://api.doppler.com/v3/me");
+        snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
+
+        fflush(stdout);
+
+        const char *headers[] = {auth_header};
+        const char *url = auth_url;
+
+        fflush(stdout);
+
+        make_request(url, headers, 0, argc, body);
+
+        fflush(stdout);
+    }
+
+    
+
+
+        
+
+}
         
 
 }
