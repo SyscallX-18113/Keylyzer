@@ -46,13 +46,13 @@ void services_printer()
       "[4] Resend API Key                     [34] Supabase Service Role Key           [64] Jenkins API Token                    [94] Grafana API Key\n"
       "[5] OpenAI API Key                     [35] PlanetScale Service Token           [65] CircleCI API Token                   [95] Prometheus Basic Auth\n"
       "[6] Discord Bot Token                  [36] New Relic API Key                   [66] Snyk API Token                       [96] Elasticsearch API Key\n"
-      "[7] Slack Token                        [37] Datadog API Key                     [67] Censys API ID + Secret               [97] MongoDB Atlas API Key\n"
+      "[7] Slack Token                        [37] Datadog API Key                     [67] Censys API ID + Secret               [97] Vultr API Key\n"
       "[8] Stripe Secret Key                  [38] Sentry Auth Token                   [68] Postmark Server Token                [98] Redis Cloud API Key\n"
       "[9] JWT Analyzer                       [39] Docker Hub Personal Access Token    [69] Mailchimp API Key                    [99] TravisCI API Token\n"
-      "[10] Twilio Auth Token                 [40] Spotify API                         [70] HubSpot Private App Token            [100] Codecov Upload Token\n"
+      "[10] Twilio Auth Token                 [40] Spotify API                         [70] HubSpot Private App Token            [100] Calendly API Token\n"
       "[11] SendGrid API Key                  [41] Reddit API                          [71] Square Access Token                  [101] Cargo/crates.io API Token\n"
       "[12] Mailgun API Key                   [42] Twitch API                          [72] PayPal Client ID + Secret            [102] RubyGems API Key\n"
-      "[13] Cloudflare API Token              [43] Anthropic API Key                   [73] Braintree API Key                    [103] Packagist/Composer Token\n"
+      "[13] Cloudflare API Token              [43] Anthropic API Key                   [73] Braintree API Key                    [103] Vonage API Key + Secret\n"
       "[14] DigitalOcean PAT                  [44] Groq API Key                        [74] Plaid Client ID + Secret             [104] 1Password Connect API Token\n"
       "[15] Heroku API Key                    [45] Cohere API Key                      [75] Alpaca Trading API Key + Secret      [105] Doppler API Token\n"
       "[16] NPM Access Token                  [46] Replicate API Token                 [76] Linode API Token                     [106] Infisical API Token\n"
@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
     return 0;
   }
 
-  printf("\nEnter [ Key/SecretKey/Token/Password/ApiKey/PrivateKey ]: ");
+  printf("\nEnter [ Key/SecretKey/Token/Password/ApiKey/PrivateKey/pass ]: ");
   fflush(stdout);
 
   if (scanf("%9999s", key) != 1)
@@ -115,6 +115,10 @@ int main(int argc, char *argv[])
   fflush(stdout);
 
   api_tester(command, key, argc);
+
+
+  return 0;
+}
 
 
   return 0;
