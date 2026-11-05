@@ -57,23 +57,37 @@ int api_tester(int command, char *key, int argc)
     if (command == 3)
     {
 
+        urls google_urls[] =
+            {
+                {"Testing Google Maps API key Google Geocoding\n", "https://maps.googleapis.com/maps/api/geocode/json?latlng=40,30&key=%s"},
+                {"Testing Google Maps API key Find Place From Text\n", "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=MuseumofContemporaryArtAustralia&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=%s"}
+
+        };
         printf("\n[*] Analyzing Google Api Key...\n\n");
         sleep(1);
+        int total_urls = sizeof(google_urls) / sizeof(google_urls[0]);
+
+        for(int i = 0; i < total_urls; i++)
+        {
         const char *body = NULL;
         fflush(stdout);
 
         char auth_header[8096];
-        
-        snprintf(auth_header, sizeof(auth_header), "x-goog-api-key: %s", key);
+        char auth_url[8096];
+
+        snprintf(auth_url, sizeof(auth_url), google_urls[i].urls, key);
 
         fflush(stdout);
 
+        printf("Testing %s", google_urls[i].description);
         const char *headers[] = {auth_header};
-        const char *url = "https://generativelanguage.googleapis.com/v1beta/models";
+        const char *url = auth_url;
 
         fflush(stdout);
 
-        make_request(url, headers, 1, argc, body);
+        make_request(url, headers, 0, argc, body);
+        auth_url[0] = '\0';
+        }
 
         fflush(stdout);
     }
@@ -1042,7 +1056,7 @@ int api_tester(int command, char *key, int argc)
 
         char auth_header[8096];
 
-       const char *body = NULL;
+        const char *body = NULL;
 
         snprintf(auth_header, sizeof(auth_header), "x-api-key: %s", key);
 
@@ -1094,7 +1108,7 @@ int api_tester(int command, char *key, int argc)
 
         char auth_header[8096];
 
-       const char *body = NULL;
+        const char *body = NULL;
 
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
 
@@ -1120,7 +1134,7 @@ int api_tester(int command, char *key, int argc)
 
         char auth_header[8096];
 
-       const char *body = NULL;
+        const char *body = NULL;
 
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
 
@@ -1146,7 +1160,7 @@ int api_tester(int command, char *key, int argc)
 
         char auth_header[8096];
 
-       const char *body = NULL;
+        const char *body = NULL;
 
         snprintf(auth_header, sizeof(auth_header), "xi-api-key: %s", key);
 
@@ -1172,7 +1186,7 @@ int api_tester(int command, char *key, int argc)
 
         char auth_header[8096];
 
-       const char *body = NULL;
+        const char *body = NULL;
 
         snprintf(auth_header, sizeof(auth_header), "X-Figma-Token: %s", key);
 
@@ -1190,7 +1204,7 @@ int api_tester(int command, char *key, int argc)
 
     if (command == 49)
     {
-//graphql
+        // graphql
         printf("\n[*] Analyzing Linear API Key...\n\n");
         sleep(1);
 
@@ -1226,7 +1240,6 @@ int api_tester(int command, char *key, int argc)
             fprintf(stderr, "Failed to read Token\n");
             return 1;
         }
-
 
         printf("\n[*] Analyzing Trello API Key + Token ...\n\n");
         sleep(1);
@@ -1290,7 +1303,6 @@ int api_tester(int command, char *key, int argc)
     if (command == 52)
     {
 
-        
         printf("\n[*] Analyzing Intercom Access Token...\n\n");
         sleep(1);
 
@@ -1316,7 +1328,6 @@ int api_tester(int command, char *key, int argc)
     if (command == 53)
     {
 
-        
         printf("\n[*] Analyzing Buildkite API Access Token...\n\n");
         sleep(1);
 
@@ -1342,7 +1353,6 @@ int api_tester(int command, char *key, int argc)
     if (command == 54)
     {
 
-        
         printf("\n[*] Analyzing Asana Personal Access Token...\n\n");
         sleep(1);
 
@@ -1393,7 +1403,6 @@ int api_tester(int command, char *key, int argc)
     if (command == 56)
     {
 
-        
         printf("\n[*] Analyzing ClickUp API Token...\n\n");
         sleep(1);
 
@@ -1419,7 +1428,6 @@ int api_tester(int command, char *key, int argc)
     if (command == 57)
     {
 
-        
         printf("\n[*] Analyzing Dropbox Access Token...\n\n");
         sleep(1);
 
@@ -1520,7 +1528,6 @@ int api_tester(int command, char *key, int argc)
     {
 
         printf("\nComing soon....\n\n");
-        
     }
 
     if (command == 62)
@@ -1554,7 +1561,7 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        snprintf(body_1, sizeof(body_1), "client_id=%s&client_secret=%s&grant_type=client_credentials&scope=https://graph.microsoft.com/.default",client_id, key);
+        snprintf(body_1, sizeof(body_1), "client_id=%s&client_secret=%s&grant_type=client_credentials&scope=https://graph.microsoft.com/.default", client_id, key);
 
         const char *body = body_1;
         snprintf(auth_url, sizeof(auth_url), "https://login.microsoftonline.com/%s/oauth2/v2.0/token", tenant_id);
@@ -1594,7 +1601,7 @@ int api_tester(int command, char *key, int argc)
         char auth_url[4096];
 
         const char *body = NULL;
-        
+
         snprintf(auth_url, sizeof(auth_url), "https://%s:8200/v1/auth/token/lookup-self", vault_id);
         snprintf(auth_header, sizeof(auth_header), "X-Vault-Token: %s", key);
 
@@ -1642,7 +1649,7 @@ int api_tester(int command, char *key, int argc)
         char auth_url[4096];
 
         const char *body = NULL;
-        
+
         snprintf(auth_url, sizeof(auth_url), "https://%s/api/json", host);
         snprintf(auth_header, sizeof(auth_header), "Authorization: Basic base64(%s:%s)", username, key);
 
@@ -1667,9 +1674,9 @@ int api_tester(int command, char *key, int argc)
         fflush(stdout);
 
         char auth_header[8096];
-       
+
         const char *body = NULL;
-        
+
         snprintf(auth_header, sizeof(auth_header), "Circle-Token: %s", key);
 
         fflush(stdout);
@@ -1693,9 +1700,9 @@ int api_tester(int command, char *key, int argc)
         fflush(stdout);
 
         char auth_header[8096];
-       
+
         const char *body = NULL;
-        
+
         snprintf(auth_header, sizeof(auth_header), "Authorization: token %s", key);
 
         fflush(stdout);
@@ -1723,7 +1730,6 @@ int api_tester(int command, char *key, int argc)
             return 1;
         }
 
-
         printf("\n[*] Analyzing Censys API ID + Secret...\n\n");
         sleep(1);
 
@@ -1733,7 +1739,7 @@ int api_tester(int command, char *key, int argc)
         char auth_url[4096];
 
         const char *body = NULL;
-        
+
         snprintf(auth_url, sizeof(auth_url), "https://search.censys.io/api/v2/account");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Basic base64(%s:%s)", app_id, key);
 
@@ -1758,9 +1764,9 @@ int api_tester(int command, char *key, int argc)
         fflush(stdout);
 
         char auth_header[8096];
-       
+
         const char *body = NULL;
-        
+
         snprintf(auth_header, sizeof(auth_header), "X-Postmark-Server-Token: %s", key);
 
         fflush(stdout);
@@ -1778,7 +1784,6 @@ int api_tester(int command, char *key, int argc)
     if (command == 69)
     {
 
-        
         char dc[4096];
 
         printf("Enter datacenter suffix embedded in the key itself (e.g. -us21): ");
@@ -1789,7 +1794,6 @@ int api_tester(int command, char *key, int argc)
             return 1;
         }
 
-
         printf("\n[*] Analyzing Mailchimp API Key...\n\n");
         sleep(1);
 
@@ -1799,7 +1803,7 @@ int api_tester(int command, char *key, int argc)
         char auth_url[4096];
 
         const char *body = NULL;
-        
+
         snprintf(auth_url, sizeof(auth_url), "https://%s.api.mailchimp.com/3.0/", dc);
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
 
@@ -1824,9 +1828,9 @@ int api_tester(int command, char *key, int argc)
         fflush(stdout);
 
         char auth_header[8096];
-       
+
         const char *body = NULL;
-        
+
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
 
         fflush(stdout);
@@ -1850,9 +1854,9 @@ int api_tester(int command, char *key, int argc)
         fflush(stdout);
 
         char auth_header[8096];
-       
+
         const char *body = NULL;
-        
+
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
 
         fflush(stdout);
@@ -1976,7 +1980,7 @@ int api_tester(int command, char *key, int argc)
 
         snprintf(body_1, sizeof(body_1), "{\"client_id\":\"%s\",\"secret\":\"%s\",\"count\":1,\"offset\":0,\"country_codes\":[\"US\"]}", client_id, key);
 
-        const char *body = body_1; 
+        const char *body = body_1;
         snprintf(auth_url, sizeof(auth_url), "https://production.plaid.com/institutions/get");
         snprintf(auth_header, sizeof(auth_header), "Content-Type: application/json");
 
@@ -2014,7 +2018,7 @@ int api_tester(int command, char *key, int argc)
         char auth_header_1[4096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.alpaca.markets/v2/account");
         snprintf(auth_header, sizeof(auth_header), "APCA-API-SECRET-KEY: %s", key);
         snprintf(auth_header_1, sizeof(auth_header), "APCA-API-KEY-ID: %s", client_id);
@@ -2031,7 +2035,6 @@ int api_tester(int command, char *key, int argc)
         fflush(stdout);
     }
 
-
     if (command == 76)
     {
 
@@ -2043,7 +2046,7 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.linode.com/v4/profile");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
 
@@ -2080,10 +2083,9 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://%s:8088/services/collector/health", host);
         snprintf(auth_header, sizeof(auth_header), "Authorization: Splunk %s", key);
-        
 
         fflush(stdout);
 
@@ -2100,7 +2102,6 @@ int api_tester(int command, char *key, int argc)
     if (command == 78)
     {
 
-
         printf("\n[*] Analyzing Splunk HEC Token...\n\n");
         sleep(1);
 
@@ -2109,10 +2110,9 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://app.honeybadger.io/v2/projects");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Basic base64(%s:)", key);
-        
 
         fflush(stdout);
 
@@ -2129,7 +2129,6 @@ int api_tester(int command, char *key, int argc)
     if (command == 79)
     {
 
-
         printf("\n[*] Analyzing Rollbar Access Token...\n\n");
         sleep(1);
 
@@ -2138,10 +2137,9 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.rollbar.com/api/1/project");
         snprintf(auth_header, sizeof(auth_header), "X-Rollbar-Access-Token: %s", key);
-        
 
         fflush(stdout);
 
@@ -2158,7 +2156,6 @@ int api_tester(int command, char *key, int argc)
     if (command == 80)
     {
 
-
         printf("\n[*] Analyzing Bugsnag API Key...\n\n");
         sleep(1);
 
@@ -2167,10 +2164,9 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.bugsnag.com/user");
         snprintf(auth_header, sizeof(auth_header), "Authorization: token %s", key);
-        
 
         fflush(stdout);
 
@@ -2187,7 +2183,6 @@ int api_tester(int command, char *key, int argc)
     if (command == 81)
     {
 
-
         printf("\n[*] Analyzing Segment Write Key...\n\n");
         sleep(1);
 
@@ -2196,10 +2191,9 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.segment.io/v1/batch");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Basic base64(%s:)", key);
-        
 
         fflush(stdout);
 
@@ -2208,7 +2202,6 @@ int api_tester(int command, char *key, int argc)
 
         fflush(stdout);
 
-    
         make_request(url, headers, 1, argc, body);
 
         fflush(stdout);
@@ -2216,7 +2209,6 @@ int api_tester(int command, char *key, int argc)
 
     if (command == 82)
     {
-
 
         printf("\n[*] Analyzing Mixpanel API Secret...\n\n");
         sleep(1);
@@ -2226,10 +2218,9 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://mixpanel.com/api/app/me");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Basic base64(%s:)", key);
-        
 
         fflush(stdout);
 
@@ -2264,10 +2255,9 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://amplitude.com/api/2/usage/accounts");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Basic base64(%s:%s)", api, key);
-        
 
         fflush(stdout);
 
@@ -2302,10 +2292,9 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.godaddy.com/v1/domains");
         snprintf(auth_header, sizeof(auth_header), "Authorization: sso-key %s:%s", api, key);
-        
 
         fflush(stdout);
 
@@ -2360,9 +2349,8 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.namecheap.com/xml.response?ApiUser=%s&ApiKey=%s&UserName=%s&Command=namecheap.users.getBalances&ClientIp=%s", api_user, key, username, ip);
-        
 
         fflush(stdout);
 
@@ -2387,10 +2375,9 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.fastly.com/current_user");
         snprintf(auth_header, sizeof(auth_header), "Fastly-Key: %s", key);
-        
 
         fflush(stdout);
 
@@ -2435,10 +2422,9 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.cloudinary.com/v1_1/%s/resources/image", cloud_name);
         snprintf(auth_header, sizeof(auth_header), "Authorization: Basic base64(%s:%s)", api_key, key);
-        
 
         fflush(stdout);
 
@@ -2463,10 +2449,9 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.unsplash.com/me");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Client-ID %s", key);
-        
 
         fflush(stdout);
 
@@ -2491,10 +2476,9 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.mistral.ai/v1/models");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
-        
 
         fflush(stdout);
 
@@ -2519,10 +2503,9 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.together.xyz/v1/models");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
-        
 
         fflush(stdout);
 
@@ -2547,10 +2530,9 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://app.terraform.io/api/v2/account/details");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
-        
 
         fflush(stdout);
 
@@ -2585,10 +2567,9 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://%s/api/v2/me/", host);
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
-        
 
         fflush(stdout);
 
@@ -2623,10 +2604,9 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://%s:6443/api/v1/namespaces/default", host);
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
-        
 
         fflush(stdout);
 
@@ -2661,10 +2641,9 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://%s/api/org", host);
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
-        
 
         fflush(stdout);
 
@@ -2709,10 +2688,9 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://%s/api/v1/status/config", host);
         snprintf(auth_header, sizeof(auth_header), "Authorization: Basic base64(%s:%s)", user, key);
-        
 
         fflush(stdout);
 
@@ -2757,10 +2735,9 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://%s:9200/_security/_authenticate", host);
         snprintf(auth_header, sizeof(auth_header), "Authorization: ApiKey {base64 %s:%s}", id, key);
-        
 
         fflush(stdout);
 
@@ -2777,7 +2754,6 @@ int api_tester(int command, char *key, int argc)
     if (command == 97)
     {
 
-
         printf("\n[*] Analyzing Vultr API Key...\n\n");
         sleep(1);
 
@@ -2786,10 +2762,9 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.vultr.com/v2/account");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
-        
 
         fflush(stdout);
 
@@ -2802,7 +2777,6 @@ int api_tester(int command, char *key, int argc)
 
         fflush(stdout);
     }
-
 
     if (command == 98)
     {
@@ -2817,7 +2791,6 @@ int api_tester(int command, char *key, int argc)
             return 1;
         }
 
-
         printf("\n[*] Analyzing Redis Cloud API Key...\n\n");
         sleep(1);
 
@@ -2827,11 +2800,10 @@ int api_tester(int command, char *key, int argc)
         char auth_header_1[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.redislabs.com/v1/subscriptions");
         snprintf(auth_header, sizeof(auth_header), "x-api-key: %s", account_key);
         snprintf(auth_header_1, sizeof(auth_header_1), "x-api-secret-key: %s", key);
-        
 
         fflush(stdout);
 
@@ -2857,11 +2829,10 @@ int api_tester(int command, char *key, int argc)
         char auth_header_1[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.travis-ci.com/user");
         snprintf(auth_header, sizeof(auth_header), "Authorization: token %s", key);
         snprintf(auth_header_1, sizeof(auth_header_1), "Travis-API-Version: 3");
-        
 
         fflush(stdout);
 
@@ -2886,11 +2857,10 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.calendly.com/users/me");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
-        
-        
+
         fflush(stdout);
 
         const char *headers[] = {auth_header};
@@ -2914,11 +2884,10 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://crates.io/api/v1/me");
         snprintf(auth_header, sizeof(auth_header), "Authorization: %s", key);
-        
-        
+
         fflush(stdout);
 
         const char *headers[] = {auth_header};
@@ -2942,11 +2911,10 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://rubygems.org/api/v1/api_key.json");
         snprintf(auth_header, sizeof(auth_header), "Authorization: %s", key);
-        
-        
+
         fflush(stdout);
 
         const char *headers[] = {auth_header};
@@ -2980,7 +2948,7 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://rest.nexmo.com/account/get-balance?api_key=%s&api_secret=%s", api_key, key);
 
         fflush(stdout);
@@ -3016,7 +2984,7 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://%s/v1/vaults", host);
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
 
@@ -3043,7 +3011,7 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.doppler.com/v3/me");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
 
@@ -3070,7 +3038,7 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://app.infisical.com/api/v2/users/me");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
 
@@ -3097,7 +3065,7 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://app.launchdarkly.com/api/v2/caller-identity");
         snprintf(auth_header, sizeof(auth_header), "Authorization: %s", key);
 
@@ -3124,7 +3092,7 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.statuspage.io/v1/users/me");
         snprintf(auth_header, sizeof(auth_header), "Authorization: OAuth %s", key);
 
@@ -3151,7 +3119,7 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://nla.zapier.com/api/v1/check");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
 
@@ -3167,7 +3135,6 @@ int api_tester(int command, char *key, int argc)
         fflush(stdout);
     }
 
-    
     if (command == 110)
     {
 
@@ -3179,7 +3146,7 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.contentful.com/spaces");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
 
@@ -3216,7 +3183,7 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://%s/api/users/me", host);
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
 
@@ -3243,7 +3210,7 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.sanity.io/v2021-06-07/users/me");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
 
@@ -3270,7 +3237,7 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.webflow.com/v2/token/authorized_by");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
 
@@ -3298,7 +3265,7 @@ int api_tester(int command, char *key, int argc)
         char auth_header_1[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.squarespace.com/1.0/commerce/orders?modifiedAfter=2024-01-01T00:00:00.000Z&modifiedBefore=2024-01-02T00:00:00.000Z");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
         snprintf(auth_header_1, sizeof(auth_header_1), "User-Agent: keylyzer/1.0");
@@ -3326,7 +3293,7 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.checklyhq.com/v1/checks");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
 
@@ -3363,7 +3330,7 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://%s/admin/api/2024-10/shop.json", host);
         snprintf(auth_header, sizeof(auth_header), "X-Shopify-Access-Token: %s", key);
 
@@ -3401,7 +3368,7 @@ int api_tester(int command, char *key, int argc)
         char auth_header_1[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.bigcommerce.com/stores/%s/v2/store", hash);
         snprintf(auth_header, sizeof(auth_header), "X-Auth-Token: %s", key);
         snprintf(auth_header_1, sizeof(auth_header_1), "Accept: application/json");
@@ -3429,7 +3396,7 @@ int api_tester(int command, char *key, int argc)
         char auth_header_1[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://a.klaviyo.com/api/accounts/");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Klaviyo-API-Key %s", key);
         snprintf(auth_header_1, sizeof(auth_header_1), "revision: 2024-10-15");
@@ -3455,9 +3422,9 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.convertkit.com/v3/account?api_secret=%s", key);
-        
+
         fflush(stdout);
 
         const char *headers[] = {auth_header};
@@ -3480,10 +3447,10 @@ int api_tester(int command, char *key, int argc)
         char auth_header[8096];
         char auth_url[4096];
 
-        const char *body; 
+        const char *body;
         snprintf(auth_url, sizeof(auth_url), "https://api.typeform.com/me");
         snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", key);
-        
+
         fflush(stdout);
 
         const char *headers[] = {auth_header};
@@ -3495,7 +3462,4 @@ int api_tester(int command, char *key, int argc)
 
         fflush(stdout);
     }
-        
 }
-
-
