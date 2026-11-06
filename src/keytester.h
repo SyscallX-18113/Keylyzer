@@ -11,4 +11,10 @@
 
 int api_tester(int command, char *key, int argc);
 
+typedef struct
+        {
+            const char *description;
+            const char *urls;
+        } urls;
+
 #endif
