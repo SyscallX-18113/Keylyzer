@@ -59,9 +59,27 @@ int api_tester(int command, char *key, int argc)
 
         urls google_urls[] =
             {
-                {"Testing Google Maps API key Google Geocoding\n", "https://maps.googleapis.com/maps/api/geocode/json?latlng=40,30&key=%s"},
-                {"Testing Google Maps API key Find Place From Text\n", "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=MuseumofContemporaryArtAustralia&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=%s"}
-
+                {"Google Maps Geocoding Api Key\n", "https://maps.googleapis.com/maps/api/geocode/json?latlng=40,30&key=%s"},
+                {"Google Maps Find Place From Text API key\n", "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=MuseumofContemporaryArtAustralia&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=%s"},
+                {"Google Maps Static Api Key\n", "https://maps.googleapis.com/maps/api/staticmap?center=45C10&zoom=7&size=400x400&key=%s"},
+                {"Google Maps Streetview Key\n", "https://maps.googleapis.com/maps/api/streetview?size=400x400&location=40.720032,-73.988354&fov=90&heading=235&pitch=10&key=%s"},
+                {"Google Maps Embed Key\n", "https://www.google.com/maps/embed/v1/place?q=place_id:ChIJyX7muQw8tokR2Vf5WBBk1iQ&key=%s"},
+                {"Google Maps Directions Key\n", "https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood4&key=%s"},
+                {"Google Maps Distance Matrix\n", "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=40.6655101,-73.89188969999998&destinations=40.6905615%2C-73.9976592%7C40.6905615%2C-73.9976592%7C40.6905615%2C-73.9976592%7C40.6905615%2C-73.9976592%7C40.6905615%2C-73.9976592%7C40.6905615%2C-73.9976592%7C40.659569%2C-73.933783%7C40.729029%2C-73.851524%7C40.6860072%2C-73.6334271%7C40.598566%2C-73.7527626%7C40.659569%2C-73.933783%7C40.729029%2C-73.851524%7C40.6860072%2C-73.6334271%7C40.598566%2C-73.7527626&key=%s"},
+                {"Google Maps Autocomplete Key\n", "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Bingh&types=%28cities%29&key=%s"},
+                {"Google Maps Elevation Key\n", "https://maps.googleapis.com/maps/api/elevation/json?locations=39.7391536,-104.9847034&key=%s"},
+                {"Google Maps Timezone Key\n", "https://maps.googleapis.com/maps/api/timezone/json?location=39.6034810,-119.6822510&timestamp=1331161200&key=%s"},
+                {"Google Maps Roads Key\n", "https://roads.googleapis.com/v1/nearestRoads?points=60.170880,24.942795|60.170879,24.942796|60.170877,24.942796&key=%s"},
+                {"Cloud Natural Language API\n", "https://language.googleapis.com/v1/documents:analyzeSentiment?key=%s"},
+                {"Cloud Translation API\n", "https://translation.googleapis.com/language/translate/v2/languages?key=%s"},
+                {"YouTube Data API\n", "https://www.googleapis.com/youtube/v3/search?part=snippet&q=test&key=%s"},
+                {"Google Custom Search JSON API\n", "https://www.googleapis.com/customsearch/v1?key=%s&cx=017576662512468239146:omuauf_lfve&q=test"},
+                {"Gemini / Generative Language API\n", "https://generativelanguage.googleapis.com/v1beta/models?key=%s"},
+                {"Cloud Text-to-Speech API\n", "https://texttospeech.googleapis.com/v1/voices?key=%s"},
+                {"Books API\n", "https://www.googleapis.com/books/v1/volumes?q=test&key=%s"},
+                {"Safe Browsing API\n", "https://safebrowsing.googleapis.com/v4/threatMatches:find?key=%s"},
+                {"Knowledge Graph Search API\n", "https://kgsearch.googleapis.com/v1/entities:search?query=test&key=%s"},
+                
         };
         printf("\n[*] Analyzing Google Api Key...\n\n");
         sleep(1);
@@ -79,7 +97,8 @@ int api_tester(int command, char *key, int argc)
 
         fflush(stdout);
 
-        printf("Testing %s", google_urls[i].description);
+        printf("Testing %s\n", google_urls[i].description);
+        sleep(2);
         const char *headers[] = {auth_header};
         const char *url = auth_url;
 
