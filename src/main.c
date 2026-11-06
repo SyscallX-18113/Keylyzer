@@ -7,7 +7,6 @@
 
 #define FULL_REQUEST "--full-request"
 
-
 int call_api()
 {
 }
@@ -71,9 +70,8 @@ void services_printer()
       "[29] Firebase Web API Key              [59] Render API Key                      [89] Mistral AI API Key                   [119] ConvertKit API Secret\n"
       "[30] Hugging Face API Token            [60] Scaleway API Key                    [90] Together AI API Key                  [120] Typeform Personal Access Token\n\n"
       "[0] Exit ");
-    }
+}
 
-    
 int main(int argc, char *argv[])
 {
 
@@ -103,7 +101,9 @@ int main(int argc, char *argv[])
     return 0;
   }
 
-  printf("\nEnter [ Key/SecretKey/Token/Password/ApiKey/PrivateKey/pass ]: ");
+  printf("\n(High-priority keys first Additional keys or client IDs will be requested when needed.)\n");
+  printf("\nEnter [Key/SecretKey/Token/Password/ApiKey/PrivateKey/pass]: ");
+  
   fflush(stdout);
 
   if (scanf("%9999s", key) != 1)
@@ -116,10 +116,8 @@ int main(int argc, char *argv[])
 
   api_tester(command, key, argc);
 
-
   return 0;
 }
-
 
   return 0;
 }
