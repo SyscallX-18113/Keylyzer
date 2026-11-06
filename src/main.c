@@ -1,4 +1,12 @@
 // Please download last release version currently the code is broken and in Development and Commit of next version
+/*
+ * Copyright (c) 2026 Devesh Kachhawaha (SyscallX-18113)
+ *
+ * Licensed under the Apache License, Version 2.0.
+ * See the LICENSE file in the project root for license information.
+ */
+
+
 #include <stdio.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,29 +24,34 @@ int call_api()
 void banner()
 {
   printf(
-      "\t\t  _  __          _                   \n"
-      "\t\t | |/ /___ _   _| |_   _ _______ _ __\n"
-      "\t\t | ' // _ \\ | | | | | | |_  / _ \\ '__|\n"
-      "\t\t | . \\  __/ |_| | | |_| |/ /  __/ |\n"
-      "\t\t |_|\\_\\___|\\__, |_|\\__, /___\\___|_|\n"
-      "\t\t           |___/   |___/\n"
-      "\n");
-  printf("_________________________________________________________________________");
-  printf("\n");
-  printf("    Keylyzer is an open-source credential analysis and verification tool  \n");
-  printf("  written in C for security researchers. It provides a unified, menu-driven   \n");
-  printf("    interface to analyze and verify supported API keys, tokens, and secrets \n");
-  printf("                using provider-specific validation modules.\n\n");
-  printf("\n");
-  printf("         Github: https://github.com/SyscallX-18113/Keylyzer \n\n");
-  printf("                  Developed By: Syscallx-18113\n\n");
-  printf("                             v1.0.0\n\n");
+    "\t/////////////////////////////////////////////////////////////////////////\n"
+    "\t//                                                                     //\n"
+    "\t//  db   dD d88888b db    db db      db    db d88888D d88888b d8888b.  //\n"
+    "\t//  88 ,8P' 88'     `8b  d8' 88      `8b  d8' YP  d8' 88'     88  `8D  //\n"
+    "\t//  88,8P   88ooooo  `8bd8'  88       `8bd8'     d8'  88ooooo 88oobY'  //\n"
+    "\t//  88`8b   88~~~~~    88    88         88      d8'   88~~~~~ 88`8b    //\n"
+    "\t//  88 `88. 88.        88    88booo.    88     d8' db 88.     88 `88.  //\n"
+    "\t//  YP   YD Y88888P    YP    Y88888P    YP    d88888P Y88888P 88   YD  //\n"
+    "\t//                                                                     //\n"
+    "\t/////////////////////////////////////////////////////////////////////////\n"
+    "\n");
+  printf("\t_________________________________________________________________________\n");
+  printf("\t\n");
+  printf("\t    Keylyzer is an open-source credential analysis and verification tool  \n");
+  printf("\t  written in C for security researchers. It provides a unified, menu-driven   \n");
+  printf("\t   interface to analyze and verify supported API keys, tokens, and secrets \n");
+  printf("\t                using provider-specific validation modules.\n\n");
+  printf("\t\n");
+  printf("\t         Github: https://github.com/SyscallX-18113/Keylyzer \n\n");
+  printf("\t                  Developed By: Syscallx-18113\n\n");
+  printf("\t                             v2.0.0\n");
+  printf("\t_________________________________________________________________________\n\n");
 }
 
-void services_printer()
+void services_print()
 {
   printf(
-      "Command: --full-request        Shows full response\n\n"
+      "Command: --full-request      Shows full response\n\n"
       "Credential Verification Framework\n"
       "\n"
       "[1] GitHub Token                       [31] OpenWeatherMap API Key              [61] AWS Access Key + Secret(coming_soon) [91] Terraform Cloud API Token\n"
@@ -57,7 +70,7 @@ void services_printer()
       "[14] DigitalOcean PAT                  [44] Groq API Key                        [74] Plaid Client ID + Secret             [104] 1Password Connect API Token\n"
       "[15] Heroku API Key                    [45] Cohere API Key                      [75] Alpaca Trading API Key + Secret      [105] Doppler API Token\n"
       "[16] NPM Access Token                  [46] Replicate API Token                 [76] Linode API Token                     [106] Infisical API Token\n"
-      "[17] PyPI API Token                    [47] ElevenLabs API Key                  [77] Splunk HEC Token                     [107] LaunchDarkly API Token\n"
+      "[17] PyPi API Token                    [47] ElevenLabs API Key                  [77] Splunk HEC Token                     [107] LaunchDarkly API Token\n"
       "[18] Telegram Bot Token                [48] Figma Personal Access Token         [78] Honeybadger API Key                  [108] Statuspage API Key\n"
       "[19] Google Cloud Service Account Key  [49] Linear API Key                      [79] Rollbar Access Token                 [109] Zapier NLA API Key\n"
       "[20] Azure Storage Account Key         [50] Trello API Key + Token              [80] Bugsnag API Key                      [110] Contentful Management API Token\n"
@@ -81,7 +94,7 @@ int main(int argc, char *argv[])
   char key[100000];
 
   banner();
-  services_printer();
+  services_print();
 
   sleep(1);
   if (isatty(STDIN_FILENO))
@@ -114,10 +127,11 @@ int main(int argc, char *argv[])
     return 0;
   }
 
-  printf("\n(High-priority keys first Additional keys or client IDs will be requested when needed.)\n");
+  printf("\n(High priority keys first additional keys or client IDs will be requested when needed.)\n");
   printf("\nEnter [Key/SecretKey/Token/Password/ApiKey/PrivateKey/pass]: ");
 
   fflush(stdout);
+
 
   struct termios old, new;
 
