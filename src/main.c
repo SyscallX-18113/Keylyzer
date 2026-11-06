@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <termios.h>
+#include <unistd.h>
 #include "keytester.h"
 
 #define FULL_REQUEST "--full-request"
@@ -76,10 +78,21 @@ int main(int argc, char *argv[])
 {
 
   int command;
-  char key[30000];
+  char key[100000];
 
   banner();
   services_printer();
+
+  sleep(1);
+  if (isatty(STDIN_FILENO))
+  {
+    printf("\n\n[*] Interactive terminal detected.\n");
+  }
+  else
+  {
+    printf("[*] Non-interactive input detected.\n");
+  }
+  sleep(1);
 
   printf("\n\nEnter Number: ");
   fflush(stdout);
@@ -103,21 +116,29 @@ int main(int argc, char *argv[])
 
   printf("\n(High-priority keys first Additional keys or client IDs will be requested when needed.)\n");
   printf("\nEnter [Key/SecretKey/Token/Password/ApiKey/PrivateKey/pass]: ");
-  
+
   fflush(stdout);
 
-  if (scanf("%9999s", key) != 1)
+  struct termios old, new;
+
+  tcgetattr(STDIN_FILENO, &old);
+  new = old;
+  new.c_lflag &= ~ECHO;
+  tcsetattr(STDIN_FILENO, TCSANOW, &new);
+
+  if (scanf("%99999s", key) != 1)
   {
     fprintf(stderr, "Failed to read key\n");
     return 1;
   }
 
+  tcsetattr(STDIN_FILENO, TCSANOW, &old);
+
+  printf("\n");
+
   fflush(stdout);
 
   api_tester(command, key, argc);
-
-  return 0;
-}
 
   return 0;
 }
