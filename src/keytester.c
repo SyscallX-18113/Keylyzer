@@ -65,7 +65,7 @@ int api_tester(int command, char *key, int argc)
                 {"Google Maps Streetview Key\n", "https://maps.googleapis.com/maps/api/streetview?size=400x400&location=40.720032,-73.988354&fov=90&heading=235&pitch=10&key=%s"},
                 {"Google Maps Embed Key\n", "https://www.google.com/maps/embed/v1/place?q=place_id:ChIJyX7muQw8tokR2Vf5WBBk1iQ&key=%s"},
                 {"Google Maps Directions Key\n", "https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood4&key=%s"},
-                {"Google Maps Distance Matrix\n", "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=40.6655101,-73.89188969999998&destinations=40.6905615%2C-73.9976592%7C40.6905615%2C-73.9976592%7C40.6905615%2C-73.9976592%7C40.6905615%2C-73.9976592%7C40.6905615%2C-73.9976592%7C40.6905615%2C-73.9976592%7C40.659569%2C-73.933783%7C40.729029%2C-73.851524%7C40.6860072%2C-73.6334271%7C40.598566%2C-73.7527626%7C40.659569%2C-73.933783%7C40.729029%2C-73.851524%7C40.6860072%2C-73.6334271%7C40.598566%2C-73.7527626&key=%s"},
+                {"Google Maps Distance Matrix\n", "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=40.6655101,-73.89188969999998&destinations=40.6905615C-73.9976592C40.6905615C-73.99765927C40.69056152C-73.9976592%7C40.69056152C-73.99765927C40.69056152C-73.99765927C40.69056152C-73.99765927C40.6595692C-73.9337837C40.729029C-73.8515247C40.68600722C-73.63342717C40.5985662C-73.75276267C40.6595692C-73.9337837C40.7290292C-73.8515247C40.68600722C-73.63342717C40.5985662C-73.7527626&key=%s"},
                 {"Google Maps Autocomplete Key\n", "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Bingh&types=%28cities%29&key=%s"},
                 {"Google Maps Elevation Key\n", "https://maps.googleapis.com/maps/api/elevation/json?locations=39.7391536,-104.9847034&key=%s"},
                 {"Google Maps Timezone Key\n", "https://maps.googleapis.com/maps/api/timezone/json?location=39.6034810,-119.6822510&timestamp=1331161200&key=%s"},
@@ -79,38 +79,79 @@ int api_tester(int command, char *key, int argc)
                 {"Books API\n", "https://www.googleapis.com/books/v1/volumes?q=test&key=%s"},
                 {"Safe Browsing API\n", "https://safebrowsing.googleapis.com/v4/threatMatches:find?key=%s"},
                 {"Knowledge Graph Search API\n", "https://kgsearch.googleapis.com/v1/entities:search?query=test&key=%s"},
-                
+
         };
         printf("\n[*] Analyzing Google Api Key...\n\n");
         sleep(1);
         int total_urls = sizeof(google_urls) / sizeof(google_urls[0]);
 
-        for(int i = 0; i < total_urls; i++)
+        if (1)
         {
-        const char *body = NULL;
-        fflush(stdout);
 
-        char auth_header[8096];
-        char auth_url[8096];
+            for (int i = 0; i < total_urls; i++)
+            {
+                const char *body = NULL;
+                fflush(stdout);
 
-        snprintf(auth_url, sizeof(auth_url), google_urls[i].urls, key);
+                char auth_header[8096];
+                char auth_url[8096];
 
-        fflush(stdout);
+                snprintf(auth_url, sizeof(auth_url), google_urls[i].urls, key);
 
-        printf("Testing %s\n", google_urls[i].description);
-        sleep(2);
-        const char *headers[] = {auth_header};
-        const char *url = auth_url;
+                fflush(stdout);
 
-        fflush(stdout);
+                printf("Testing %s\n", google_urls[i].description);
+                sleep(2);
+                const char *headers[] = {auth_header};
+                const char *url = auth_url;
 
-        make_request(url, headers, 0, argc, body);
-        auth_url[0] = '\0';
+                fflush(stdout);
+
+                make_request(url, headers, 0, argc, body);
+                auth_url[0] = '\0';
+            }
+
+            fflush(stdout);
         }
 
-        fflush(stdout);
-    }
+        urls google_urls_1[] =
+            {
+                {"Google Vision API\n", "https://vision.googleapis.com/v1/images:annotate"},
+                {"Google Video Intelligence\n", "https://videointelligence.googleapis.com/v1/videos:annotate"},
+                {"Google Drive API\n", "https://www.googleapis.com/drive/v3/about"},
+                {"Google Calendar API\n", "https:/www.googleapis.com/calendar/v3/users/me/calendarList"},
+        };
 
+        int total_urls_1 = sizeof(google_urls_1) / sizeof(google_urls_1[0]);
+        if (1)
+        {
+
+            for (int i = 0; i < total_urls_1; i++)
+            {
+                const char *body = NULL;
+                fflush(stdout);
+
+                char auth_header[8096];
+
+                snprintf(auth_header, sizeof(auth_header), "x-goog-api-key: %s", key);
+
+                fflush(stdout);
+                printf("Testing %s\n", google_urls_1[i].description);
+                sleep(2);
+
+                const char *headers[] = {auth_header};
+                const char *url = google_urls_1[i].urls;
+
+                fflush(stdout);
+
+                make_request(url, headers, 1, argc, body);
+                url = '\0';
+                auth_header[0] = '\0';
+
+            }
+            fflush(stdout);
+        }
+    }
     if (command == 4)
     {
         printf("\n[*] Analyzing Resend API Key...\n\n");
