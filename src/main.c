@@ -1,4 +1,3 @@
-// Please download last release version currently the code is broken and in Development and Commit of next version
 /*
  * Copyright (c) 2026 Devesh Kachhawaha (SyscallX-18113)
  *
@@ -91,7 +90,6 @@ int main(int argc, char *argv[])
 {
 
   int command;
-  char key[100000];
 
   banner();
   services_print();
@@ -127,32 +125,11 @@ int main(int argc, char *argv[])
     return 0;
   }
 
-  printf("\n(High priority keys first additional keys or client IDs will be requested when needed.)\n");
-  printf("\nEnter [Key/SecretKey/Token/Password/ApiKey/PrivateKey/pass]: ");
-
+  
   fflush(stdout);
 
 
-  struct termios old, new;
-
-  tcgetattr(STDIN_FILENO, &old);
-  new = old;
-  new.c_lflag &= ~ECHO;
-  tcsetattr(STDIN_FILENO, TCSANOW, &new);
-
-  if (scanf("%99999s", key) != 1)
-  {
-    fprintf(stderr, "Failed to read key\n");
-    return 1;
-  }
-
-  tcsetattr(STDIN_FILENO, TCSANOW, &old);
-
-  printf("\n");
-
-  fflush(stdout);
-
-  api_tester(command, key, argc);
+  api_tester(command, argc);
 
   return 0;
 }
